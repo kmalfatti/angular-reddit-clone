@@ -1,0 +1,126 @@
+
+.wrapper, .wrapper:after {
+  width: 980px;
+  content: " ";
+  display: table;
+  clear: both;
+  margin: 15px auto;
+}
+
+
+header {
+  background-color: rgb(235, 235, 235);
+}
+
+nav {
+  content: " ";
+  display: inline-block;
+  height: auto;
+  clear: both;
+  color: rgb(100, 100, 100);
+}
+
+nav h1, nav input, nav p, nav select {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+nav #sortBy{
+  padding-right: 0;
+}
+
+main img {
+  width: 150px;
+}
+
+[ng-click]:hover, button:hover, .click:hover {
+ cursor: pointer;
+}
+
+#action p, #postHeading p{
+  display: inline-block;
+  padding: 0 5px; 
+}
+
+#postHeading p{
+  font-weight: bold;
+}
+
+#postHeading h4  {
+  display: inline-block;
+  border-right: 2px solid black;
+  padding-right: 10px;
+}
+
+.img, #content {
+  float: left;
+  /*background-color: blue;*/
+}
+
+#text {
+  padding-top: 20px;
+}
+
+#content *{
+  margin: -2px 0;
+}
+
+#content {
+  width: 700px;
+}
+
+#author{
+  float: right;
+  margin-top: -20px;  
+}
+main div {
+  padding: 10px;
+  background-color: rgb(235, 235, 235);
+}
+
+form label {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+form {
+  margin: 15px;
+}
+
+form label {
+  display: block;
+}
+
+#postForm input{
+  display: block;
+  height: 25px;
+  width: 100%;
+}
+
+.highlightGreen{
+  color: green;
+}
+
+.highlightRed{
+  color: red;
+}
+
+.ng-enter {
+  animation: fadeIn .8s;
+}
+
+.ng-leave {
+  animation: fadeOut .6s;
+}
+main > .ng-enter {
+  animation: fadeInRight .8s;
+}
+
+/*.wrapper.ng-move {
+  animation: fadeIn .5s;
+  opacity: 0;
+}*/
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

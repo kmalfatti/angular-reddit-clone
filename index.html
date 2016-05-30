@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='redditApp'>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Reddit Clone</title>
+</head>
+<body ng-controller='MainController' ng-cloak>
+  <header>
+    <nav>
+      <h1>Reddit Clone</h1>
+      <p ng-click="toggleShow()" class="click">&#43; Submit Post</p>
+      <input type="text" placeholder="Search" ng-model='searchText'>
+      <p id="sortBy">Sort By:</p>
+        <select ng-model='sort' ng-init="sort='-votes'"> 
+          <option value="-votes">Votes</option>
+          <option value="-sortDate">Date</option>
+          <option value="title">Title</option>
+        </select>
+    </nav>
+  </header>
+  <div ng-if="show">
+    <form ng-submit='addPost()' id="postForm">
+      <label>Title
+        <input type="text" placeholder="Title" ng-model=view.title ng-required="required">
+      </label>
+      <label>Author
+        <input type="text" placeholder="Author" ng-model=view.author ng-required="required">
+      </label>
+      <label>Image URL
+        <input type="text" placeholder="Image URL" ng-model=view.image ng-required="required">
+      </label>
+      <label>Description
+        <input type="text" placeholder="Description" ng-model=view.description ng-required="required">
+      </label>
+      <br>
+      <button>Submit Post</button>
+    </form>
+  </div>
+
+
+  <main>
+    <div class="wrapper" ng-repeat="post in view.posts | orderBy:sort | filter:searchText">
+      <div class="img">
+        <img src={{post.image}} alt="">
+      </div>
+      <div id="content">
+        <div id="postHeading">
+          <h4>{{post.title}}</h4>
+          <p ng-click="post.votes=post.votes+1">&uarr;</p> 
+          <p ng-click="post.votes=post.votes-1">&darr;</p>
+          <p ng-class="{highlightRed: post.votes < 0, highlightGreen: post.votes > 0}">{{post.votes}}</p>
+        </div>
+        <div id="author">
+          <p>by {{post.author}}</p>
+        </div>
+        <div id="text"> 
+          <p>{{post.description}}</p>
+        </div>
+        <div id="action">
+          <p>&#128198; {{post.date}}</p> 
+          <p ng-click='post.showAllComments = !post.showAllComments' class="click">&#9776; <ng-pluralize count='post.comments.length || 0'
+          when="{'1': '{{post.comments.length}} Comment',
+      'other': '{{post.comments.length || 0}} Comments'}"></ng-pluralize></p>
+          <p ng-click='post.showCommentForm = ! post.showCommentForm' class="click">&#9998; Add Comment</p>
+        </div>
+
+        <div ng-if='post.showCommentForm'>
+          <form ng-submit='addComment()'>
+            <input type="text" placeholder="Username" ng-model='post.comments.username'>
+            <input type="text" placeholder="Comment" ng-model='post.comments.text'>
+            <button>Add Comment</button>
+          </form>
+        </div>
+        <div ng-if='post.showAllComments' ng-repeat='comment in post.comments'> 
+          <p><strong>{{comment.username}}</strong> - {{comment.text}}</p>
+        </div>
+          
+      </div>
+    </div>
+    
+         
+  </main>
+
+
+<!-- <script src="/Users/kmalfatti/Downloads/angular.js"></script> -->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+
+  <script src="app.js"></script>
+  <script src="../moments/moments.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+
+</body>
+</html>
