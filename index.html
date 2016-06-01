@@ -21,24 +21,23 @@
     </nav>
   </header>
   <div ng-if="show">
-    <form ng-submit='addPost()' id="postForm">
+    <form name="postForm" ng-submit='addPost(postForm)' id="postForm">
       <label>Title
-        <input type="text" placeholder="Title" ng-model=view.title ng-required="required">
+        <input ng-class="{red: postForm.$submitted}" type="text" placeholder="Title" ng-model="view.title" ng-required="required">
       </label>
       <label>Author
-        <input type="text" placeholder="Author" ng-model=view.author ng-required="required">
+        <input ng-class="{red: postForm.$submitted}" type="text" placeholder="Author" ng-model=view.author ng-required="required">
       </label>
       <label>Image URL
-        <input type="text" placeholder="Image URL" ng-model=view.image ng-required="required">
+        <input ng-class="{red: postForm.$submitted}" type="text" placeholder="Image URL" ng-model=view.image ng-required="required">
       </label>
       <label>Description
-        <input type="text" placeholder="Description" ng-model=view.description ng-required="required">
+        <input ng-class="{red: postForm.$submitted}" type="text" placeholder="Description" ng-model=view.description ng-required="required">
       </label>
       <br>
-      <button>Submit Post</button>
+      <button ng-click='postForm.$submitted = true'>Submit Post</button>
     </form>
   </div>
-
 
   <main>
     <div class="wrapper" ng-repeat="post in view.posts | orderBy:sort | filter:searchText">
@@ -67,30 +66,22 @@
         </div>
 
         <div ng-if='post.showCommentForm'>
-          <form ng-submit='addComment()'>
-            <input type="text" placeholder="Username" ng-model='post.comments.username'>
-            <input type="text" placeholder="Comment" ng-model='post.comments.text'>
+          <form ng-submit='addComment(post)'>
+            <input type="text" placeholder="Username" ng-model='post.newComment.username'>
+            <input type="text" placeholder="Comment" ng-model='post.newComment.text'>
             <button>Add Comment</button>
           </form>
         </div>
-        <div ng-if='post.showAllComments' ng-repeat='comment in post.comments'> 
+        <div ng-if='post.showAllComments' ng-repeat='comment in post.comments track by $index'> 
           <p><strong>{{comment.username}}</strong> - {{comment.text}}</p>
         </div>
-          
       </div>
     </div>
-    
-         
   </main>
 
-
-<!-- <script src="/Users/kmalfatti/Downloads/angular.js"></script> -->
-
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
-
   <script src="app.js"></script>
   <script src="../moments/moments.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
-
 </body>
 </html>

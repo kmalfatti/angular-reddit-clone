@@ -7,7 +7,6 @@
   margin: 15px auto;
 }
 
-
 header {
   background-color: rgb(235, 235, 235);
 }
@@ -54,7 +53,6 @@ main img {
 
 .img, #content {
   float: left;
-  /*background-color: blue;*/
 }
 
 #text {
@@ -94,7 +92,7 @@ form label {
 #postForm input{
   display: block;
   height: 25px;
-  width: 100%;
+  width: 100%;;
 }
 
 .highlightGreen{
@@ -116,11 +114,24 @@ main > .ng-enter {
   animation: fadeInRight .8s;
 }
 
-/*.wrapper.ng-move {
-  animation: fadeIn .5s;
-  opacity: 0;
-}*/
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+.info {
+  margin-bottom: -15px;
+}
+
+input.red.ng-invalid {
+  background-color: #ffcccc;
+}
+
+button {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.content {
+  margin-top: -17px;
 }
