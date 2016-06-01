@@ -67,9 +67,9 @@
 
         <div ng-if='post.showCommentForm'>
           <form ng-submit='addComment(post)'>
-            <input type="text" placeholder="Username" ng-model='post.newComment.username'>
-            <input type="text" placeholder="Comment" ng-model='post.newComment.text'>
-            <button>Add Comment</button>
+            <input ng-class="{red: postForm.$submitted}" type="text" placeholder="Username" ng-model='post.newComment.username' ng-required='required'>
+            <input ng-class="{red: postForm.$submitted}" type="text" placeholder="Comment" ng-model='post.newComment.text' ng-required='required'>
+            <button ng-click='postForm.$submitted = true'>Add Comment</button>
           </form>
         </div>
         <div ng-if='post.showAllComments' ng-repeat='comment in post.comments track by $index'> 
